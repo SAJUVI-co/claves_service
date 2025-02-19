@@ -13,6 +13,11 @@ import { DianModule } from './dian/dian.module';
 import { PersonaRepresentanteModule } from './persona_representante/persona_representante.module';
 import { PlanillaSsModule } from './planilla_ss/planilla_ss.module';
 import { EpsModule } from './eps/eps.module';
+import { CorreosModule } from './correos/correos.module';
+import { ContableModule } from './contable/contable.module';
+import { PersonaModuloSubmoduloModule } from './persona_modulo_submodulo/persona_modulo_submodulo.module';
+import { ContadorPublicoModule } from './contador_publico/contador_publico.module';
+import { ModulosModule } from './modulos/modulos.module';
 
 class LoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -36,6 +41,11 @@ class LoggerModule implements NestModule {
     PersonaRepresentanteModule,
     PlanillaSsModule,
     EpsModule,
+    CorreosModule,
+    ContableModule,
+    PersonaModuloSubmoduloModule,
+    ContadorPublicoModule,
+    ModulosModule,
   ],
 })
 export class AppModule {}
