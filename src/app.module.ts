@@ -16,8 +16,12 @@ import { EpsModule } from './eps/eps.module';
 import { CorreosModule } from './correos/correos.module';
 import { ContableModule } from './contable/contable.module';
 import { PersonaModuloSubmoduloModule } from './persona_modulo_submodulo/persona_modulo_submodulo.module';
-import { ContadorPublicoModule } from './contador_publico/contador_publico.module';
 import { ModulosModule } from './modulos/modulos.module';
+import { TiposPlantillaModule } from './tipos_plantilla/tipos_plantilla.module';
+import { TipoEntidadModule } from './tipo_entidad/tipo_entidad.module';
+import { AfpModule } from './afp/afp.module';
+import { ProgramasModule } from './programas/programas.module';
+import { ContadorPersonaModule } from './contador_persona/contador_persona.module';
 
 class LoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -44,8 +48,12 @@ class LoggerModule implements NestModule {
     CorreosModule,
     ContableModule,
     PersonaModuloSubmoduloModule,
-    ContadorPublicoModule,
     ModulosModule,
+    TiposPlantillaModule,
+    TipoEntidadModule,
+    AfpModule,
+    ProgramasModule,
+    ContadorPersonaModule,
   ],
 })
 export class AppModule {}
