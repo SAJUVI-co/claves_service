@@ -5,6 +5,13 @@ export enum TipoPersona {
   natural = 'NATURAL',
 }
 
+export enum TipoDocumento {
+  cedula = 'CC',
+  nit = 'NIT',
+  targeta_identidad = 'TI',
+  pasaporte = 'PA',
+}
+
 export class CreatePersonaDto {
   @IsNotEmpty({ message: 'El tipo de persona no puede estar vacio' })
   @IsString({ message: 'El tipo de persona debe ser una cadena de texto' })
@@ -16,7 +23,7 @@ export class CreatePersonaDto {
 
   @IsNotEmpty({ message: 'La cedula no puede estar vacia' })
   @IsNumber({}, { message: 'La cedula debe ser un número' })
-  cedula: number;
+  cedula: TipoDocumento;
 
   @IsNotEmpty({ message: 'El dv no puede estar vacio' })
   @IsInt({ message: 'El correo debe ser Int' })
