@@ -9,10 +9,6 @@ export class CreateAlcaldiaDto {
   @IsString({ message: 'La pagina web debe ser de tipo string' })
   paginaWeb: string;
 
-  @IsNotEmpty({ message: 'La identificacion es requerida' })
-  @IsString({ message: 'La idenficacion debe ser de tipo string' })
-  identificacion: string;
-
   @IsNotEmpty({ message: 'La clave de ingreso es requerida' })
   @IsString({ message: 'La clave de ingreso debe ser de tipo string' })
   clave_ingreso: string;
