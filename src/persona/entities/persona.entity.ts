@@ -1,8 +1,14 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { TipoDocumento, TipoPersona } from '../dto/create-persona.dto';
 
 export class Persona {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: number;
 
   @Column({
@@ -41,20 +47,12 @@ export class Persona {
   })
   dv: number;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de creacion del modulo',
-  })
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de actualizacion del modulo',
-  })
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @Column({
-    comment: 'Fecha de eliminacion del modulo',
-  })
+  @DeleteDateColumn()
   deleted_at: Date;
 }

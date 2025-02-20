@@ -1,4 +1,10 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export class Modulo {
   @PrimaryGeneratedColumn()
@@ -11,20 +17,12 @@ export class Modulo {
   })
   nombre: string;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de creacion del modulo',
-  })
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de actualizacion del modulo',
-  })
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @Column({
-    comment: 'Fecha de eliminacion del modulo',
-  })
+  @DeleteDateColumn()
   deleted_at: Date;
 }

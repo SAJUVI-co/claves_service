@@ -1,7 +1,13 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export class Programa {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: number;
 
   @Column({
@@ -16,20 +22,12 @@ export class Programa {
   })
   pagina_web: string;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de creacion del modulo',
-  })
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column({
-    nullable: false,
-    comment: 'Fecha de actualizacion del modulo',
-  })
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @Column({
-    comment: 'Fecha de eliminacion del modulo',
-  })
+  @DeleteDateColumn()
   deleted_at: Date;
 }
