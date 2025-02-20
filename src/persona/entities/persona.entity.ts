@@ -1,8 +1,8 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 import { TipoDocumento, TipoPersona } from '../dto/create-persona.dto';
 
 export class Persona {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
