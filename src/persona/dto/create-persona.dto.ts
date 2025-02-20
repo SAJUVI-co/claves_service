@@ -23,7 +23,11 @@ export class CreatePersonaDto {
 
   @IsNotEmpty({ message: 'La cedula no puede estar vacia' })
   @IsNumber({}, { message: 'La cedula debe ser un número' })
-  cedula: TipoDocumento;
+  tipo_documento: TipoDocumento;
+
+  @IsNotEmpty({ message: 'El numero de documento no puede estar vacio' })
+  @IsInt({ message: 'El numero de documento debe ser Int' })
+  numero_documento: number;
 
   @IsNotEmpty({ message: 'El dv no puede estar vacio' })
   @IsInt({ message: 'El correo debe ser Int' })
