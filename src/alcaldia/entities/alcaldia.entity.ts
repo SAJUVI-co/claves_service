@@ -1,4 +1,10 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export class Alcaldia {
   @PrimaryGeneratedColumn()
@@ -38,4 +44,13 @@ export class Alcaldia {
     comment: 'Placa',
   })
   placa: number;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @DeleteDateColumn()
+  deleted_at: Date;
 }
