@@ -18,7 +18,7 @@ export class PlanillaSs {
 
   @Column({
     nullable: false,
-    comment: 'Fecha de la planilla',
+    comment: 'Clave de ingreso de la planilla',
   })
   clave_ingreso: string;
 
