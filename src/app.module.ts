@@ -1,7 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { UserServiceModule } from './user_service/user_service.module';
-import { ClavesModule } from './claves/claves.module';
 import { CamaraComercioModule } from './camara_comercio/camara_comercio.module';
 import { SuperintendenciaModule } from './superintendencia/superintendencia.module';
 import { CcfModule } from './ccf/ccf.module';
@@ -33,7 +32,6 @@ class LoggerModule implements NestModule {
   imports: [
     LoggerModule,
     UserServiceModule,
-    ClavesModule,
     CamaraComercioModule,
     SuperintendenciaModule,
     CcfModule,
