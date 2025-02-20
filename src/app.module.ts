@@ -1,6 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './logger/logger.middleware';
-import { UserServiceModule } from './user_service/user_service.module';
 import { CamaraComercioModule } from './camara_comercio/camara_comercio.module';
 import { SuperintendenciaModule } from './superintendencia/superintendencia.module';
 import { CcfModule } from './ccf/ccf.module';
@@ -21,6 +20,7 @@ import { TipoEntidadModule } from './tipo_entidad/tipo_entidad.module';
 import { AfpModule } from './afp/afp.module';
 import { ProgramasModule } from './programas/programas.module';
 import { ContadorPersonaModule } from './contador_persona/contador_persona.module';
+import { UsersModule } from './users/users.module';
 
 class LoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -31,7 +31,6 @@ class LoggerModule implements NestModule {
 @Module({
   imports: [
     LoggerModule,
-    UserServiceModule,
     CamaraComercioModule,
     SuperintendenciaModule,
     CcfModule,
@@ -52,6 +51,7 @@ class LoggerModule implements NestModule {
     AfpModule,
     ProgramasModule,
     ContadorPersonaModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
