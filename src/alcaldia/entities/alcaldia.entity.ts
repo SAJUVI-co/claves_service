@@ -1,7 +1,10 @@
+import { PaginaCuidad } from 'src/pagina_cuidad/entities/pagina_cuidad.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -10,10 +13,8 @@ export class Alcaldia {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    nullable: false,
-    comment: 'El id de la cuidad',
-  })
+  @OneToOne(() => PaginaCuidad)
+  @JoinColumn()
   cuidad: number;
 
   @Column({
