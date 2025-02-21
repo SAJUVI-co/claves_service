@@ -1,6 +1,7 @@
 import { DatesBase } from 'src/utils/base_dates.entity';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Cuidad extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;
