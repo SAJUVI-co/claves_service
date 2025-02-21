@@ -1,6 +1,12 @@
 import { Modulo } from 'src/modulos/entities/modulo.entity';
 import { DatesBase } from 'src/utils/base_dates.entity';
-import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export class PersonaModuloSubmodulo extends DatesBase {
   @PrimaryGeneratedColumn()
@@ -12,7 +18,7 @@ export class PersonaModuloSubmodulo extends DatesBase {
   })
   id_submodulo: number;
 
-  @OneToOne(() => Modulo, (m) => m.id)
+  @OneToMany(() => Modulo, (m) => m.id)
   @JoinColumn()
   @Column({
     nullable: false,
@@ -20,6 +26,8 @@ export class PersonaModuloSubmodulo extends DatesBase {
   })
   id_modulo: number;
 
+  @OneToOne(() => Modulo, (m) => m.id)
+  @JoinColumn()
   @Column({
     nullable: false,
     comment: 'relacion de las personas',
