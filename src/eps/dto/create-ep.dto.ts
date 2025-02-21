@@ -7,5 +7,5 @@ export class CreateEpDto {
 
   @IsNotEmpty({ message: 'la clave de ingreso no puede estar vacia' })
   @IsString({ message: 'la clave de ingreso debe ser un string' })
-  clave: string;
+  clave_ingreso: string;
 }
