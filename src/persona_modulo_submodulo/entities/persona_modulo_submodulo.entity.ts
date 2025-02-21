@@ -1,4 +1,5 @@
 import { Modulo } from 'src/modulos/entities/modulo.entity';
+import { Persona } from 'src/persona/entities/persona.entity';
 import { DatesBase } from 'src/utils/base_dates.entity';
 import {
   Column,
@@ -26,7 +27,7 @@ export class PersonaModuloSubmodulo extends DatesBase {
   })
   id_modulo: number;
 
-  @OneToOne(() => Modulo, (m) => m.id)
+  @OneToOne(() => Persona, (p) => p.id)
   @JoinColumn()
   @Column({
     nullable: false,
