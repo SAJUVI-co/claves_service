@@ -1,7 +1,9 @@
+import { Contable } from 'src/contable/entities/contable.entity';
 import { Programa } from 'src/programas/entities/programa.entity';
 import { DatesBase } from 'src/utils/base_dates.entity';
-import { Column, JoinColumn, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 
+@Entity()
 export class ContablePrograma extends DatesBase {
   @OneToMany(() => Programa, (p) => p.id)
   @JoinColumn()
@@ -11,6 +13,7 @@ export class ContablePrograma extends DatesBase {
   })
   id_programa: number;
 
+  @OneToOne(() => Contable, (c) => c.id)
   @JoinColumn()
   @Column({
     nullable: false,
