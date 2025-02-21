@@ -2,6 +2,7 @@ import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateTipoEntidadDto {
   @IsNotEmpty({ message: 'El nombre es requerido' })
+  @IsString({ message: 'El nombre debe ser un string' })
   nombre: string;
 
   @IsNotEmpty({ message: 'La pagina web es requerida' })
