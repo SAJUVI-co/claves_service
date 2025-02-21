@@ -1,18 +1,8 @@
 import { PaginaCuidad } from 'src/pagina_cuidad/entities/pagina_cuidad.entity';
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { SubModuleBase } from 'src/utils/base_table.entity';
+import { Column, JoinColumn, OneToOne } from 'typeorm';
 
-export class Alcaldia {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Alcaldia extends SubModuleBase {
   @OneToOne(() => PaginaCuidad)
   @JoinColumn()
   cuidad: number;
@@ -22,12 +12,6 @@ export class Alcaldia {
     comment: 'Pagina web',
   })
   pagina_web: string;
-
-  @Column({
-    nullable: false,
-    comment: 'La clave de ingreso es requerida',
-  })
-  clave_ingreso: string;
 
   @Column({
     comment: 'Clave de exogenna',
@@ -45,13 +29,4 @@ export class Alcaldia {
     comment: 'Placa',
   })
   placa: number;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }
