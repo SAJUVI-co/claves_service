@@ -1,12 +1,7 @@
-import {
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Column,
-} from 'typeorm';
+import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { DatesBase } from './base_dates.entity';
 
-export abstract class SubModuleBase extends  {
+export abstract class SubModuleBase extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,13 +9,4 @@ export abstract class SubModuleBase extends  {
     nullable: false,
   })
   clave_ingreso: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }

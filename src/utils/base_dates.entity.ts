@@ -1,6 +1,6 @@
 import { UpdateDateColumn, CreateDateColumn, DeleteDateColumn } from 'typeorm';
 
-export abstract class SubModuleBase {
+export abstract class DatesBase {
   @CreateDateColumn()
   created_at: Date;
 
