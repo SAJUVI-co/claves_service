@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateContableDto {
   @IsNotEmpty({ message: 'El usuario es requerido' })
@@ -10,6 +10,10 @@ export class CreateContableDto {
   clave_ingreso: string;
 
   @IsNotEmpty({ message: 'El programa es requerido' })
-  @IsArray({ message: 'El programa debe ser de tipo string' })
-  programa: number[];
+  @IsInt({ message: 'El programa debe ser de tipo enterno' })
+  id_programa: number;
+
+  @IsNotEmpty({ message: 'El programa es requerido' })
+  @IsInt({ message: 'El programa debe ser de tipo number' })
+  id_contable: number;
 }
