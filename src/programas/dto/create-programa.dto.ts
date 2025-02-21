@@ -7,5 +7,5 @@ export class CreateProgramaDto {
 
   @IsNotEmpty({ message: 'La pagina web del programa es requerida' })
   @IsString({ message: 'La pagina web del programa debe ser un texto' })
-  paginaWeb: string;
+  pagina_web: string;
 }

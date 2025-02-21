@@ -13,5 +13,5 @@ export class UpdateProgramaDto extends PartialType(CreateProgramaDto) {
 
   @IsOptional()
   @IsString({ message: 'La pagina web del programa debe ser un texto' })
-  paginaWeb: string;
+  pagina_web: string;
 }
