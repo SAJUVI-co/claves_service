@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { LoggerMiddleware } from './logger/logger.middleware';
+import { LoggerMiddleware } from './utils/logger/logger.middleware';
 import { CamaraComercioModule } from './camara_comercio/camara_comercio.module';
 import { SuperintendenciaModule } from './superintendencia/superintendencia.module';
 import { CcfModule } from './ccf/ccf.module';
