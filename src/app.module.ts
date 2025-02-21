@@ -3,7 +3,7 @@ import { LoggerMiddleware } from './logger/logger.middleware';
 import { CamaraComercioModule } from './camara_comercio/camara_comercio.module';
 import { SuperintendenciaModule } from './superintendencia/superintendencia.module';
 import { CcfModule } from './ccf/ccf.module';
-import { PaginaCuidadModule } from './pagina_cuidad/pagina_cuidad.module';
+import { CuidadModule } from './cuidad/cuidad.module';
 import { AlcaldiaModule } from './alcaldia/alcaldia.module';
 import { PersonaModule } from './persona/persona.module';
 import { ArlModule } from './arl/arl.module';
@@ -36,7 +36,7 @@ class LoggerModule implements NestModule {
     CamaraComercioModule,
     SuperintendenciaModule,
     CcfModule,
-    PaginaCuidadModule,
+    CuidadModule,
     AlcaldiaModule,
     PersonaModule,
     ArlModule,
