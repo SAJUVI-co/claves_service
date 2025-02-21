@@ -3,12 +3,14 @@ import { Persona } from 'src/persona/entities/persona.entity';
 import { DatesBase } from 'src/utils/base_dates.entity';
 import {
   Column,
+  Entity,
   JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+@Entity()
 export class PersonaModuloSubmodulo extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;

@@ -1,6 +1,7 @@
 import { ModuleBase } from 'src/utils/base_table.entity';
-import { Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
+@Entity()
 export class Ccf extends ModuleBase {
   @Column({
     nullable: false,

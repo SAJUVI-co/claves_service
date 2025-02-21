@@ -1,7 +1,14 @@
 import { Persona } from 'src/persona/entities/persona.entity';
 import { DatesBase } from 'src/utils/base_dates.entity';
-import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+@Entity()
 export class ContadorPersona extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;

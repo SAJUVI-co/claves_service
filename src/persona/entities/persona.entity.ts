@@ -1,7 +1,8 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { TipoDocumento, TipoPersona } from '../dto/create-persona.dto';
 import { DatesBase } from 'src/utils/base_dates.entity';
 
+@Entity()
 export class Persona extends DatesBase {
   @PrimaryColumn()
   id: number;

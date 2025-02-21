@@ -1,6 +1,7 @@
 import { DatesBase } from 'src/utils/base_dates.entity';
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
+@Entity()
 export class Programa extends DatesBase {
   @PrimaryColumn()
   id: number;

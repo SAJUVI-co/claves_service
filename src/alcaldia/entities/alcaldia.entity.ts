@@ -1,7 +1,8 @@
 import { Cuidad } from 'src/cuidad/entities/cuidad.entity';
 import { ModuleBase } from 'src/utils/base_table.entity';
-import { Column, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
+@Entity()
 export class Alcaldia extends ModuleBase {
   @OneToOne(() => Cuidad)
   @JoinColumn()
