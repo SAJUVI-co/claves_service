@@ -5,6 +5,9 @@ import { Column, JoinColumn, OneToOne } from 'typeorm';
 export class Alcaldia extends ModuleBase {
   @OneToOne(() => PaginaCuidad)
   @JoinColumn()
+  @Column({
+    nullable: false,
+  })
   cuidad: number;
 
   @Column({
