@@ -1,10 +1,4 @@
-import {
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Column,
-} from 'typeorm';
+import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 export abstract class SubModuleBase {
   @PrimaryGeneratedColumn()
@@ -14,13 +8,4 @@ export abstract class SubModuleBase {
     nullable: false,
   })
   clave_ingreso: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }
