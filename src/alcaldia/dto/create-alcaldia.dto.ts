@@ -1,13 +1,9 @@
 import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateAlcaldiaDto {
-  @IsNotEmpty({ message: 'El campo cuidad no puede estar vacio' })
-  @IsInt({ message: 'El campo cuidad debe ser un numero entero' })
-  cuidad: number;
-
-  @IsNotEmpty({ message: 'La pagina web es requerida' })
-  @IsString({ message: 'La pagina web debe ser de tipo string' })
-  paginaWeb: string;
+  @IsNotEmpty({ message: 'La sucursal es requerida' })
+  @IsInt({ message: 'La sucursal es un numero entero' })
+  sucursal: number;
 
   @IsNotEmpty({ message: 'La clave de ingreso es requerida' })
   @IsString({ message: 'La clave de ingreso debe ser de tipo string' })
