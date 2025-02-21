@@ -4,6 +4,6 @@ import { IsInt, IsNotEmpty } from 'class-validator';
 
 export class UpdatePaginaCuidadDto extends PartialType(CreatePaginaCuidadDto) {
   @IsNotEmpty({ message: 'El id es requerido' })
-  @IsInt({ message: 'El id debe ser de tipo numero' })
+  @IsInt({ message: 'El id debe ser un número entero' })
   id: number;
 }
