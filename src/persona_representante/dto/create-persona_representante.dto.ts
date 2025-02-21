@@ -16,4 +16,8 @@ export class CreatePersonaRepresentanteDto {
   @IsNotEmpty({ message: 'El id de la persona representada es requerido' })
   @IsInt({ message: 'El id debe ser de tipo entero' })
   id_persona_representante: number;
+
+  @IsNotEmpty({ message: 'El id de la persona es requerido' })
+  @IsInt({ message: 'El id de la persona debe ser de tipo entero' })
+  id_persona: number;
 }
