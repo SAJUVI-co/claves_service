@@ -21,6 +21,7 @@ import { AfpModule } from './afp/afp.module';
 import { ProgramasModule } from './programas/programas.module';
 import { ContadorPersonaModule } from './contador_persona/contador_persona.module';
 import { UsersModule } from './users/users.module';
+import { ContableProgramaModule } from './contable_programa/contable_programa.module';
 
 class LoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -52,6 +53,7 @@ class LoggerModule implements NestModule {
     ProgramasModule,
     ContadorPersonaModule,
     UsersModule,
+    ContableProgramaModule,
   ],
 })
 export class AppModule {}
