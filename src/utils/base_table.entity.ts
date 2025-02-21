@@ -10,7 +10,9 @@ export abstract class SubModuleBase {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   clave_ingreso: string;
 
   @CreateDateColumn()
