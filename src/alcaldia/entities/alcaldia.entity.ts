@@ -8,13 +8,7 @@ export class Alcaldia extends ModuleBase {
   @Column({
     nullable: false,
   })
-  cuidad: number;
-
-  @Column({
-    nullable: false,
-    comment: 'Pagina web',
-  })
-  pagina_web: string;
+  sucursal: number;
 
   @Column({
     comment: 'Clave de exogenna',
