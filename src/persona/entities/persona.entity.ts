@@ -1,13 +1,8 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, PrimaryColumn } from 'typeorm';
 import { TipoDocumento, TipoPersona } from '../dto/create-persona.dto';
+import { DatesBase } from 'src/utils/base_dates.entity';
 
-export class Persona {
+export class Persona extends DatesBase {
   @PrimaryColumn()
   id: number;
 
@@ -46,13 +41,4 @@ export class Persona {
     comment: 'Digito de verificacion del documento',
   })
   dv: number;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }

@@ -1,12 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { DatesBase } from 'src/utils/base_dates.entity';
+import { Column, PrimaryColumn } from 'typeorm';
 
-export class Programa {
+export class Programa extends DatesBase {
   @PrimaryColumn()
   id: number;
 
@@ -21,13 +16,4 @@ export class Programa {
     nullable: false,
   })
   pagina_web: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }

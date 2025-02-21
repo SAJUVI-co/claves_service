@@ -1,7 +1,7 @@
-import { SubModuleBase } from 'src/utils/base_table.entity';
+import { ModuleBase } from 'src/utils/base_table.entity';
 import { Column } from 'typeorm';
 
-export class Dian extends SubModuleBase {
+export class Dian extends ModuleBase {
   @Column({
     comment: 'Clave de la firma',
   })

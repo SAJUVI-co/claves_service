@@ -1,33 +1,10 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { ModuleBase } from 'src/utils/base_table.entity';
+import { Column } from 'typeorm';
 
-export class Ccf {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Ccf extends ModuleBase {
+  @Column()
+  correo_electronico: string;
 
-  @Column({
-    nullable: false,
-    comment: 'Usuario de la Ccf',
-  })
-  usuario: string;
-
-  @Column({
-    nullable: false,
-    comment: 'Clave de ingreso de la Ccf',
-  })
-  clave_ingreso: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
+  @Column()
+  codigo_empresa: string;
 }

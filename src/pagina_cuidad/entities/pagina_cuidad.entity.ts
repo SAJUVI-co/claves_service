@@ -1,12 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { DatesBase } from 'src/utils/base_dates.entity';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export class PaginaCuidad {
+export class PaginaCuidad extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,13 +9,4 @@ export class PaginaCuidad {
     comment: 'Nombre de la cuidad',
   })
   cuidad: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }

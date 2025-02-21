@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 import { DatesBase } from './base_dates.entity';
 
-export abstract class SubModuleBase extends DatesBase {
+export abstract class ModuleBase extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;
 

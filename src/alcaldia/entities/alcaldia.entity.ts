@@ -1,8 +1,8 @@
 import { PaginaCuidad } from 'src/pagina_cuidad/entities/pagina_cuidad.entity';
-import { SubModuleBase } from 'src/utils/base_table.entity';
+import { ModuleBase } from 'src/utils/base_table.entity';
 import { Column, JoinColumn, OneToOne } from 'typeorm';
 
-export class Alcaldia extends SubModuleBase {
+export class Alcaldia extends ModuleBase {
   @OneToOne(() => PaginaCuidad)
   @JoinColumn()
   cuidad: number;

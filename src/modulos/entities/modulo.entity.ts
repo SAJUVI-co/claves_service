@@ -1,12 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { DatesBase } from 'src/utils/base_dates.entity';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export class Modulo {
+export class Modulo extends DatesBase {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,13 +11,4 @@ export class Modulo {
     comment: 'Nombre del modulo',
   })
   nombre: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
 }
