@@ -7,5 +7,5 @@ export class CreateAfpDto {
 
   @IsNotEmpty({ message: 'La clave de ingreso es requerida' })
   @IsString({ message: 'La clave de ingreso debe ser un string' })
-  clave: string;
+  clave_ingreso: string;
 }
