@@ -7,7 +7,7 @@ export class CreateCcfDto {
 
   @IsNotEmpty({ message: 'La clave de acceso es requerida' })
   @IsString({ message: 'La clave de acceso debe ser un texto' })
-  clave: string;
+  clave_ingreso: string;
 
   @IsNotEmpty({ message: 'El nombre codigo de empresa es requerido' })
   @IsString({ message: 'El nombre codigo de empresa debe ser un texto' })
