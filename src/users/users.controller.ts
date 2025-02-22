@@ -8,7 +8,7 @@ import { FindWithFilters } from './dto/filters.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @MessagePattern('createUser')
+  @MessagePattern({ cmd: 'createUser' })
   create(@Payload() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -18,12 +18,12 @@ export class UsersController {
     return this.usersService.findAllFilters(findWithFilters);
   }
 
-  @MessagePattern('findOneUser')
+  @MessagePattern({ cmd: 'findOneUser' })
   findOne(@Payload() id: number) {
     return this.usersService.findOne(id);
   }
 
-  @MessagePattern('removeUser')
+  @MessagePattern({ cmd: 'removeUser' })
   remove(@Payload() id: number) {
     return this.usersService.remove(id);
   }
