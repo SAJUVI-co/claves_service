@@ -10,7 +10,7 @@ async function bootstrap() {
       transport: Transport.TCP,
       options: {
         host: process.env.SERVER_HOST || 'localhost',
-        port: parseInt(process.env.SERVER_PORT || '3000'),
+        port: parseInt(process.env.SERVER_PORT || '3001'),
       },
     },
   );
@@ -25,8 +25,8 @@ async function bootstrap() {
 
   await app.listen();
 
-  const logger = new Logger('Users Service');
-  logger.log('Service Running');
+  const logger = new Logger('Claves Service');
+  logger.log('Claves Running');
 }
 bootstrap().catch((error) => {
   const logger = new Logger('Bootstrap');
