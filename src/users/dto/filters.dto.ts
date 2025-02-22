@@ -21,3 +21,10 @@ export class FindWithFilters {
   })
   order: OrderEnum;
 }
+
+export class FindOneWithFilters extends FindWithFilters {
+  @IsInt({
+    message: 'id param must be number',
+  })
+  id: number;
+}
