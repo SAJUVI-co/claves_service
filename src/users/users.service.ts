@@ -107,7 +107,15 @@ export class UsersService {
         where: {
           id: id,
         },
+        select: ['id', 'user_id', 'created_at', 'updated_at'],
       });
+
+      if (user === null) {
+        throw new RpcException({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          message: `User with id ${(id as any).id} not found`,
+        });
+      }
 
       return user;
     } catch (error) {
