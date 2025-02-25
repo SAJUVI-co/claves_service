@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RpcException } from '@nestjs/microservices';
-import { FindWithFilters } from './dto/filters.dto';
+import { NotFindDeletedWithFilters } from './dto/filters.dto';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +19,7 @@ export class UsersService {
     return 'hello users service';
   }
 
-  // Create and save a user
+  // Create and save a user //* CHECK
   async create(createUserDto: CreateUserDto): Promise<any> {
     try {
       const user = this.userRepository.create(createUserDto);
@@ -47,17 +47,42 @@ export class UsersService {
     }
   }
 
-  // Get all users
+  // Get all users //* CHECK
   async findAllFilters(
-    findWithFilters: FindWithFilters,
+    notFindDeletedWithFilters: NotFindDeletedWithFilters,
   ): Promise<[User[], number]> {
     try {
-      const { skip, limit, order } = findWithFilters;
+      const { skip, limit, order, sh } = notFindDeletedWithFilters;
+
+      // si SH es TRUE trae todos los usuarios que no hayan sido eliminados
+      if (sh) {
+        return await this.userRepository.findAndCount({
+          where: {
+            deleted_at: IsNull(),
+          },
+          select: ['id', 'user_id', 'created_at', 'updated_at'],
+          skip,
+          take: limit,
+          order: { id: order },
+        });
+      }
+
+      // trae todos los usuarios que han sido eliminados
       const users = await this.userRepository.findAndCount({
+        where: {
+          deleted_at: Not(IsNull()),
+        },
         skip,
         take: limit,
         order: { id: order },
       });
+
+      // si no hay usuarios lanza un error 400
+      if (users[1] === 0) {
+        throw new RpcException({
+          message: 'Users not found',
+        });
+      }
 
       return users;
     } catch (error) {

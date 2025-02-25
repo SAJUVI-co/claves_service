@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { FindWithFilters } from './dto/filters.dto';
+import { NotFindDeletedWithFilters } from './dto/filters.dto';
 
 @Controller()
 export class UsersController {
@@ -14,8 +14,8 @@ export class UsersController {
   }
 
   @MessagePattern({ cmd: 'findAllUsers' })
-  findAll(@Payload() findWithFilters: FindWithFilters) {
-    return this.usersService.findAllFilters(findWithFilters);
+  findAll(@Payload() notFindDeletedWithFilters: NotFindDeletedWithFilters) {
+    return this.usersService.findAllFilters(notFindDeletedWithFilters);
   }
 
   @MessagePattern({ cmd: 'findOneUser' })
