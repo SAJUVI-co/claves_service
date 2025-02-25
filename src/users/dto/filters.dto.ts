@@ -1,4 +1,4 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsString } from 'class-validator';
 
 export enum OrderEnum {
   asc = 'ASC',
@@ -20,6 +20,13 @@ export class FindWithFilters {
     message: 'limit param must be interger number',
   })
   order: OrderEnum;
+}
+
+export class NotFindDeletedWithFilters extends FindWithFilters {
+  @IsBoolean({
+    message: 'Incorrect type',
+  })
+  sh: boolean;
 }
 
 export class FindOneWithFilters extends FindWithFilters {
