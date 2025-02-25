@@ -31,16 +31,19 @@ export class UsersService {
         };
     } catch (error: unknown) {
       if (error instanceof Error) {
+        const isDuplicateEntry = error.message.includes('Duplicate entry');
         throw new RpcException({
-          message: error.message,
+          message: isDuplicateEntry
+            ? 'The user already exists. Please use another email to verify your data.'
+            : error.message,
           statusCode: 400,
         });
-      } else {
-        throw new RpcException({
-          message: 'Unknown error',
-          statusCode: 500,
-        });
       }
+
+      throw new RpcException({
+        message: 'Unknown error',
+        statusCode: 500,
+      });
     }
   }
 
