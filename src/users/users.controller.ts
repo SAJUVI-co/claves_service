@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { NotFindDeletedWithFilters } from './dto/filters.dto';
+import { FindWithFilters } from './dto/filters.dto';
 
 @Controller()
 export class UsersController {
@@ -14,17 +14,32 @@ export class UsersController {
   }
 
   @MessagePattern({ cmd: 'findAllUsers' })
-  findAll(@Payload() notFindDeletedWithFilters: NotFindDeletedWithFilters) {
-    return this.usersService.findAllFilters(notFindDeletedWithFilters);
+  findAllF(@Payload() findWithFilters: FindWithFilters) {
+    return this.usersService.findAllF(findWithFilters);
+  }
+
+  @MessagePattern({ cmd: 'findAllDeletedUsers' })
+  findAllDel(@Payload() findWithFilters: FindWithFilters) {
+    return this.usersService.findAllDel(findWithFilters);
   }
 
   @MessagePattern({ cmd: 'findOneUser' })
-  findOne(@Payload() id: number) {
-    return this.usersService.findOne(id);
+  findOneU(@Payload() id: number) {
+    return this.usersService.findOneU(id);
   }
 
-  @MessagePattern({ cmd: 'removeUser' })
-  remove(@Payload() id: number) {
-    return this.usersService.remove(id);
+  @MessagePattern({ cmd: 'SD_user' })
+  softDelete(@Payload() id: number) {
+    return this.usersService.softDelete(id);
+  }
+
+  @MessagePattern({ cmd: 'DEL_use' })
+  delt(@Payload() id: number) {
+    return this.usersService.delt(id);
+  }
+
+  @MessagePattern({ cmd: 'res_User' })
+  rest(@Payload() id: number) {
+    return this.usersService.rest(id);
   }
 }
