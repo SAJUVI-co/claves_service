@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { IsNull, Not, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RpcException } from '@nestjs/microservices';
-import { NotFindDeletedWithFilters } from './dto/filters.dto';
+import { FindWithFilters } from './dto/filters.dto';
+import { Errors } from 'src/utils/Errors';
 
 @Injectable()
 export class UsersService {
@@ -34,7 +35,7 @@ export class UsersService {
         const isDuplicateEntry = error.message.includes('Duplicate entry');
         throw new RpcException({
           message: isDuplicateEntry
-            ? 'The user already exists. Please use another email to verify your data.'
+            ? 'The user already exists. Please use another data.'
             : error.message,
           statusCode: 400,
         });
@@ -48,30 +49,12 @@ export class UsersService {
   }
 
   // Get all users //* CHECK
-  async findAllFilters(
-    notFindDeletedWithFilters: NotFindDeletedWithFilters,
-  ): Promise<[User[], number]> {
+  async findAllF(findWithFilters: FindWithFilters): Promise<[User[], number]> {
     try {
-      const { skip, limit, order, sh } = notFindDeletedWithFilters;
+      const { skip, limit, order } = findWithFilters;
 
-      // si SH es TRUE trae todos los usuarios que no hayan sido eliminados
-      if (sh) {
-        return await this.userRepository.findAndCount({
-          where: {
-            deleted_at: IsNull(),
-          },
-          select: ['id', 'user_id', 'created_at', 'updated_at'],
-          skip,
-          take: limit,
-          order: { id: order },
-        });
-      }
-
-      // trae todos los usuarios que han sido eliminados
       const users = await this.userRepository.findAndCount({
-        where: {
-          deleted_at: Not(IsNull()),
-        },
+        select: ['id', 'user_id', 'created_at', 'updated_at'],
         skip,
         take: limit,
         order: { id: order },
@@ -100,8 +83,37 @@ export class UsersService {
     }
   }
 
-  // Get one user
-  async findOne(id: number): Promise<any> {
+  // Get all deleted users //* CHECK
+  async findAllDel(findWithFilters: FindWithFilters) {
+    try {
+      const { skip, limit, order } = findWithFilters;
+      const users = await this.userRepository.findAndCount({
+        withDeleted: true,
+        skip,
+        take: limit,
+        order: { id: order },
+      });
+
+      if (!users) Errors.Nfound('Users not found');
+
+      return users;
+    } catch (error: any) {
+      if (error instanceof Error) {
+        throw new RpcException({
+          message: error.message,
+          statusCode: 400,
+        });
+      } else {
+        throw new RpcException({
+          message: 'Unknown error',
+          statusCode: 500,
+        });
+      }
+    }
+  }
+
+  // Get one user //* CHECK
+  async findOneU(id: number): Promise<any> {
     try {
       const user = await this.userRepository.findOne({
         where: {
@@ -133,31 +145,58 @@ export class UsersService {
     }
   }
 
-  // temporarily delete a user
-  async remove(id: number) {
+  // temporarily delete a user //* CHECK
+  async softDelete(id: number) {
     try {
       const user = await this.userRepository.softDelete(id);
-      if (user)
-        return {
-          status: 200,
-          message: `The user ${id} has been deleted`,
-        };
-      return {
-        status: 404,
-        message: 'Has been an error',
-      };
-    } catch (error) {
-      if (error instanceof Error) {
+
+      if (user.affected === 0) {
         throw new RpcException({
-          message: error.message,
-          statusCode: 400,
-        });
-      } else {
-        throw new RpcException({
-          message: 'Unknown error',
-          statusCode: 500,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          message: `User with id ${(id as any).id} not found`,
         });
       }
+
+      return 'ok';
+    } catch (error) {
+      throw new RpcException({
+        message: error instanceof Error ? error.message : 'Unknown error',
+        statusCode: 400,
+      });
+    }
+  }
+
+  // Delete user //* CHECK
+  async delt(id: number) {
+    try {
+      const user = await this.userRepository.delete(id);
+
+      if (user.affected === 0) {
+        throw new RpcException({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          message: `User with id ${(id as any).id} not found`,
+        });
+      }
+
+      return 'ok';
+    } catch (error) {
+      throw new RpcException({
+        message: error instanceof Error ? error.message : 'Unknown error',
+        statusCode: 400,
+      });
+    }
+  }
+
+  // Restore user
+  async rest(id: number) {
+    try {
+      await this.userRepository.restore(id);
+      return 'ok';
+    } catch (error) {
+      throw new RpcException({
+        message: error instanceof Error ? error.message : 'Unknown error',
+        statusCode: 400,
+      });
     }
   }
 }
