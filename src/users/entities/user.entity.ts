@@ -12,4 +12,11 @@ export class User extends DatesBase {
     comment: 'Id del usuario almacenado en el servicio',
   })
   user_id: number;
+
+  @Column({
+    unique: true,
+    nullable: true,
+    comment: 'Id del usuario almacenado en el servicio',
+  })
+  username: string;
 }
