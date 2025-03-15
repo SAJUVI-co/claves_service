@@ -10,7 +10,7 @@ export class UsersController {
 
   @MessagePattern({ cmd: 'createUser' })
   create(@Payload() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return this.usersService.createUser(createUserDto);
   }
 
   @MessagePattern({ cmd: 'findAllUsers' })

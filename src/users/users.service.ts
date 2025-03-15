@@ -21,15 +21,16 @@ export class UsersService {
   }
 
   // Create and save a user //* CHECK
-  async create(createUserDto: CreateUserDto): Promise<any> {
+  async createUser(createUserDto: CreateUserDto): Promise<any> {
     try {
+      console.log(createUserDto);
       const user = this.userRepository.create(createUserDto);
       const save_user = await this.userRepository.save(user);
-      if (save_user)
-        return {
-          access: true,
-          status: 200,
-        };
+      if (save_user) console.log(save_user);
+      return {
+        access: true,
+        status: 200,
+      };
     } catch (error: unknown) {
       if (error instanceof Error) {
         const isDuplicateEntry = error.message.includes('Duplicate entry');
